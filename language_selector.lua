@@ -126,7 +126,7 @@ end
 -- All of these should be formatted using the Accept-Language header syntax, e.g. "en-US,en;q=0.8,fr-FR;q=0.5,fr;q=0.3"
 local query_parameter = ngx.var["arg_"..query_parameter_and_cookie_name]
 local cookie_value = ngx.var["cookie_"..query_parameter_and_cookie_name]
-local accept_language_header = ngx.var.http_accept_language:split(":")[1] -- "Accept-Language:" stripped off
+local accept_language_header = ngx.var.http_accept_language
 
 -- Handle sources in order of priority: query parameter, cookie value, Accept-Language header
 -- If a match is found, return immediately
@@ -144,6 +144,7 @@ elseif cookie_value ~= nil then
   end
 
 elseif accept_language_header ~= nil then
+  accept_language_header = accept_language_header:split(":")[1] -- Strip off "Accept-Language:"
   local match = accept_language_header:match_with_supported()
   if match ~= nil then
     return match
