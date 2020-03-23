@@ -1,6 +1,6 @@
 ------------------------------------------------------------
 -- NGINX Static Language Selector
--- Version: 1.0
+-- Version: 1.0.1
 -- Source: https://github.com/Skymirrh
 --
 -- Retrieve client language preferences from:
